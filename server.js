@@ -745,7 +745,7 @@ function server_container(server_name, user_config, socket_io) {
   //uncomment sync_chown to correct perms on server discovery
   //commenting out for high cpu usage on startup
 
-  var files_to_tail = ['logs/latest.log', 'server.log', 'proxy.log.0', 'logs/fml-server-latest.log'];
+  var files_to_tail = ['logs/latest.log', 'server.log', 'proxy.log.0', 'logs/fml-server-latest.log', 'screenlog.0'];
   if ( (user_config || {}).additional_logfiles ) {  //if additional_logfiles key:value pair exists, use it
     var additional = user_config['additional_logfiles'].split(',');
     additional = additional.filter(function(e){return e}); //remove non-truthy entries like ''

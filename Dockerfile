@@ -28,7 +28,10 @@ RUN mkdir /usr/games/minecraft \
   && cp mineos.conf /etc/mineos.conf \
   && chmod +x webui.js mineos_console.js service.js \
   && npm pkg set dependencies.diskusage=1.2.0 \
-  && npm pkg set overrides.nan=2.22.0 \
+  && npm pkg set dependencies.userid=1.2.5 \
+  && npm pkg set dependencies.node-addon-api='^4.0.0' \
+  && npm pkg set overrides.nan=2.26.2 \
+  && npm pkg set overrides.node-addon-api='^4.0.0' \
   && rm -f package-lock.json
 
 #build npm deps and clean up apt for image minimalization

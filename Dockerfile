@@ -1,4 +1,4 @@
-FROM ubuntu:noble
+FROM ubuntu:26.04
 LABEL MAINTAINER='William Dizon <wdchromium@gmail.com>'
 
 #update and accept all prompts
@@ -12,8 +12,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   rlwrap \
   unzip \
-  openjdk-21-jre-headless \
-  openjdk-8-jre-headless \
+  openjdk-25-jre-headless \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -27,7 +26,10 @@ RUN mkdir /usr/games/minecraft \
   && cd /usr/games/minecraft \
   && git clone --depth=1 https://github.com/hexparrot/mineos-node.git . \
   && cp mineos.conf /etc/mineos.conf \
-  && chmod +x webui.js mineos_console.js service.js
+  && chmod +x webui.js mineos_console.js service.js \
+  && npm pkg set dependencies.diskusage=1.2.0 \
+  && npm pkg set overrides.nan=2.22.0 \
+  && rm -f package-lock.json
 
 #build npm deps and clean up apt for image minimalization
 RUN cd /usr/games/minecraft \
